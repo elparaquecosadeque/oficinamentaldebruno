@@ -21,12 +21,12 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Bruno León');
   });
 
-  it('renders all 9 links, 6 live and 3 pending', async () => {
+  it('renders all 9 links live', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelectorAll('.tag').length).toBe(9);
-    expect(compiled.querySelectorAll('a.tag').length).toBe(6);
-    expect(compiled.querySelectorAll('.tag--soon').length).toBe(3);
+    expect(compiled.querySelectorAll('a.tag').length).toBe(9);
+    expect(compiled.querySelectorAll('.tag--soon').length).toBe(0);
   });
 });
