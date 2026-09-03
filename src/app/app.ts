@@ -45,13 +45,13 @@ export class App implements AfterViewInit, OnDestroy {
   constructor(private readonly host: ElementRef<HTMLElement>) { }
 
   protected readonly photos: HeroPhoto[] = [
-    // { src: '/assets/hero/1.jpg', position: '58% 80%' },
-    // { src: '/assets/hero/2.jpg', position: '10% 72%' },
-    // { src: '/assets/hero/3.jpg', position: '65% 62%', desktopTransform: 'translateX(-103px)' },
+    { src: '/assets/hero/1.jpg', position: '58% 80%' },
+    { src: '/assets/hero/2.jpg', position: '10% 72%' },
+    { src: '/assets/hero/3.jpg', position: '65% 62%', desktopTransform: 'translateX(-103px)' },
     { src: '/assets/hero/4.jpg', position: '40% 65%' },
-    // { src: '/assets/hero/5.jpg', position: '70% 87%' },
-    // { src: '/assets/hero/6.jpg', position: '50% 69%' },
-    // { src: '/assets/hero/7.jpg', position: '50% 85%' },
+    { src: '/assets/hero/5.jpg', position: '70% 87%' },
+    { src: '/assets/hero/6.jpg', position: '50% 69%', desktopTransform: 'translateX(-300px)' },
+    { src: '/assets/hero/7.jpg', position: '50% 85%', desktopTransform: 'translateX(-180px)' },
   ];
 
   protected readonly rotator = new PhotoRotator(this.photos.length);
@@ -65,7 +65,7 @@ export class App implements AfterViewInit, OnDestroy {
   }
 
   protected readonly name = 'Bruno León';
-  protected readonly bio = 'Ingeniero de software, músico, y las rutas de bus que se me ocurren en el camino.';
+  protected readonly bio = 'Ingeniero de software aportando un granito de arena a la sociedad a través de la tecnología y el arte.';
 
   protected readonly links: LinkItem[] = [
     { label: 'Mi Metropolitano', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/mi-metropolitano', rotate: -1.4 },
@@ -74,8 +74,8 @@ export class App implements AfterViewInit, OnDestroy {
     { label: 'Personal Trainer PWA', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/personal-trainer-pwa', rotate: 1.3 },
     { label: 'Collage Tools', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/collage-tools', rotate: -1.1 },
     { label: 'Artículos en dev.to', tag: 'Blog', tagSlug: 'blog', href: 'https://dev.to/gerardo_leon', rotate: 0.9 },
-    { label: 'Instagram', tag: 'Social', tagSlug: 'social', href: null, rotate: -1.3 },
-    { label: 'TikTok', tag: 'Social', tagSlug: 'social', href: null, rotate: 1.2 },
-    { label: 'Poesía', tag: 'Poesía', tagSlug: 'poesia', href: null, rotate: -0.9 },
+    { label: 'Instagram', tag: 'Social', tagSlug: 'social', href: 'https://www.instagram.com/oficinamentaldebruno', rotate: -1.3 },
+    { label: 'TikTok', tag: 'Social', tagSlug: 'social', href: 'https://www.tiktok.com/@oficinamentaldebruno', rotate: 1.2 },
+    { label: 'Poesía', tag: 'Poesía', tagSlug: 'poesia', href: 'https://thefaintestthing.blogspot.com/', rotate: -0.9 },
   ];
 }
