@@ -47,3 +47,6 @@ Thumbs.db
 .DS_Store
 Thumbs.db
 .impeccable/
+
+# Raw personal photo originals (not built)
+/source-photos/

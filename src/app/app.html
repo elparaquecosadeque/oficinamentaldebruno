@@ -1,7 +1,13 @@
 <div class="stage">
   <div class="photo-layer" aria-hidden="true">
-    @for (src of photos; track src; let i = $index) {
-      <img [src]="src" class="photo" [class.is-active]="i === rotator.index()" alt="" />
+    @for (photo of photos; track photo.src; let i = $index) {
+      <img
+        [src]="photo.src"
+        class="photo"
+        [class.is-active]="i === rotator.index()"
+        [style.object-position]="photo.position"
+        alt=""
+      />
     }
   </div>
   <div class="scrim" aria-hidden="true"></div>
