@@ -1,0 +1,46 @@
+<div class="stage">
+  <div class="photo-layer" aria-hidden="true">
+    @for (src of photos; track src; let i = $index) {
+      <img [src]="src" class="photo" [class.is-active]="i === rotator.index()" alt="" />
+    }
+  </div>
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"></div>
+
+  <main class="panel">
+    <header class="identity">
+      <h1 class="name">{{ name }}</h1>
+      <p class="bio">{{ bio }}</p>
+    </header>
+
+    <nav class="tags" aria-label="Links">
+      @for (item of links; track item.label; let i = $index) {
+        @if (item.href) {
+          <a
+            class="tag"
+            [class]="'tag--' + item.tagSlug"
+            [href]="item.href"
+            target="_blank"
+            rel="noopener"
+            [style.--rot.deg]="item.rotate"
+            [style.--i]="i"
+          >
+            <span class="tag__label">{{ item.label }}</span>
+            <span class="tag__badge">{{ item.tag }}</span>
+          </a>
+        } @else {
+          <div
+            class="tag tag--soon"
+            [class]="'tag--' + item.tagSlug"
+            [style.--rot.deg]="item.rotate"
+            [style.--i]="i"
+            aria-disabled="true"
+          >
+            <span class="tag__label">{{ item.label }}</span>
+            <span class="tag__badge">{{ item.tag }} · Pronto</span>
+          </div>
+        }
+      }
+    </nav>
+  </main>
+</div>

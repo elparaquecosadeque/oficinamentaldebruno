@@ -1,0 +1,73 @@
+import { AfterViewInit, Component, ElementRef, OnDestroy, signal } from '@angular/core';
+
+function prefersReducedMotion(): boolean {
+  return typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+}
+
+class PhotoRotator {
+  readonly index = signal(0);
+  private timer?: ReturnType<typeof setInterval>;
+
+  constructor(private readonly length: number, private readonly intervalMs = 5000) {}
+
+  start(): void {
+    if (this.length <= 1 || prefersReducedMotion()) return;
+    this.stop();
+    this.timer = setInterval(() => this.index.update((i) => (i + 1) % this.length), this.intervalMs);
+  }
+
+  stop(): void {
+    clearInterval(this.timer);
+  }
+}
+
+interface LinkItem {
+  label: string;
+  tag: string;
+  tagSlug: string; // ascii-safe class suffix for `tag` (accented labels aren't safe as CSS class names)
+  href: string | null; // null = not live yet
+  rotate: number; // slight sticker-like tilt, degrees
+}
+
+@Component({
+  selector: 'app-root',
+  imports: [],
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
+})
+export class App implements AfterViewInit, OnDestroy {
+  constructor(private readonly host: ElementRef<HTMLElement>) {}
+
+  protected readonly photos = [
+    '/assets/hero/1.jpg',
+    '/assets/hero/2.jpg',
+    '/assets/hero/3.jpg',
+    '/assets/hero/4.jpg',
+    '/assets/hero/5.jpg',
+  ];
+
+  protected readonly rotator = new PhotoRotator(this.photos.length);
+
+  ngAfterViewInit(): void {
+    this.rotator.start();
+  }
+
+  ngOnDestroy(): void {
+    this.rotator.stop();
+  }
+
+  protected readonly name = 'Bruno León';
+  protected readonly bio = 'Ingeniero de software, músico, y las rutas de bus que se me ocurren en el camino.';
+
+  protected readonly links: LinkItem[] = [
+    { label: 'Mi Metropolitano', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/mi-metropolitano', rotate: -1.4 },
+    { label: 'The Chords', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/the-chords', rotate: 1.1 },
+    { label: 'Live Sound Calculator', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/live-sound-calculator', rotate: -0.8 },
+    { label: 'Personal Trainer PWA', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/personal-trainer-pwa', rotate: 1.3 },
+    { label: 'Collage Tools', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/collage-tools', rotate: -1.1 },
+    { label: 'Artículos en dev.to', tag: 'Blog', tagSlug: 'blog', href: 'https://dev.to/gerardo_leon', rotate: 0.9 },
+    { label: 'Instagram', tag: 'Social', tagSlug: 'social', href: null, rotate: -1.3 },
+    { label: 'TikTok', tag: 'Social', tagSlug: 'social', href: null, rotate: 1.2 },
+    { label: 'Poesía', tag: 'Poesía', tagSlug: 'poesia', href: null, rotate: -0.9 },
+  ];
+}

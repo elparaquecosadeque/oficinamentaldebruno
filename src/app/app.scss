@@ -1,0 +1,200 @@
+:host {
+  --canvas: #1c3330;
+  --canvas-deep: #0e1a18;
+  --cream: #f5efe2;
+  --ink-red: #c0432f;
+  --stamp-blue: #3a6ea5;
+  --mustard: #d99a2b;
+  --text: #f5efe2;
+  --text-dim: rgba(245, 239, 226, 0.72);
+  --display: 'Anton', sans-serif;
+
+  display: block;
+}
+
+* :focus-visible {
+  outline: 2px solid var(--mustard);
+  outline-offset: 3px;
+}
+
+.stage {
+  position: relative;
+  min-height: 100dvh;
+  width: 100%;
+  background: var(--canvas);
+}
+
+/* ---------- Photo layer ---------- */
+
+.photo-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+
+  &.is-active { opacity: 1; }
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top, rgba(14, 26, 24, 0.92) 0%, rgba(14, 26, 24, 0.55) 45%, rgba(14, 26, 24, 0.25) 100%);
+}
+
+@media (min-width: 860px) {
+  .scrim {
+    background:
+      linear-gradient(to top, rgba(14, 26, 24, 0.8) 0%, rgba(14, 26, 24, 0.35) 55%, rgba(14, 26, 24, 0.1) 100%),
+      linear-gradient(to right, rgba(14, 26, 24, 0.08) 0%, rgba(14, 26, 24, 0.55) 52%, rgba(14, 26, 24, 0.88) 78%, var(--canvas-deep) 100%);
+  }
+}
+
+.frame {
+  position: fixed;
+  inset: 0.6rem;
+  z-index: 2;
+  border: 1px solid rgba(245, 239, 226, 0.22);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo { transition: none; }
+}
+
+/* ---------- Panel ---------- */
+
+.panel {
+  position: relative;
+  z-index: 3;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.75rem;
+  padding: 2rem 1.25rem 2.25rem;
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 860px) {
+  .panel {
+    margin: 0 4rem 0 auto;
+    align-items: flex-start;
+    text-align: left;
+    padding: 3rem 1rem;
+  }
+}
+
+.identity {
+  text-align: center;
+}
+
+@media (min-width: 860px) {
+  .identity { text-align: left; }
+}
+
+.name {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: clamp(2.1rem, 6vw, 2.9rem);
+  line-height: 1.05;
+  margin: 0 0 0.6rem;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+}
+
+.bio {
+  color: var(--text-dim);
+  font-size: 0.98rem;
+  line-height: 1.5;
+  margin: 0;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Tags (link buttons) ---------- */
+
+.tags {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  width: 100%;
+}
+
+.tag {
+  --accent: var(--stamp-blue);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border-radius: 0.6rem;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 70%, white 5%);
+  background: color-mix(in srgb, var(--accent) 22%, rgba(20, 24, 22, 0.4));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  text-decoration: none;
+  color: var(--text);
+  transform: rotate(var(--rot));
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  animation: settle 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--i) * 60ms);
+}
+
+@keyframes settle {
+  from { opacity: 0; transform: rotate(calc(var(--rot) * 3)) scale(0.9) translateY(6px); }
+  to { opacity: 1; transform: rotate(var(--rot)) scale(1) translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tag { animation: none; }
+}
+
+a.tag:hover, a.tag:focus-visible {
+  transform: rotate(0deg) scale(1.015);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 34%, rgba(20, 24, 22, 0.4));
+}
+
+.tag--proyecto { --accent: var(--stamp-blue); }
+.tag--blog { --accent: var(--mustard); }
+.tag--social { --accent: var(--ink-red); }
+.tag--poesia { --accent: var(--cream); }
+
+.tag--soon {
+  cursor: default;
+  opacity: 0.6;
+  filter: grayscale(0.3);
+}
+
+.tag__label {
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+.tag__badge {
+  flex: 0 0 auto;
+  font-family: ui-monospace, 'Cascadia Code', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border-left: 1px dashed color-mix(in srgb, var(--accent) 60%, transparent);
+  padding-left: 0.75rem;
+  white-space: nowrap;
+}
