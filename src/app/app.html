@@ -6,6 +6,7 @@
         class="photo"
         [class.is-active]="i === rotator.index()"
         [style.object-position]="photo.position"
+        [style.--desktop-transform]="photo.desktopTransform || 'none'"
         alt=""
       />
     }

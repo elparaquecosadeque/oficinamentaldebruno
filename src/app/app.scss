@@ -45,6 +45,10 @@
   &.is-active { opacity: 1; }
 }
 
+@media (min-width: 860px) {
+  .photo { transform: var(--desktop-transform, none); }
+}
+
 .scrim {
   position: fixed;
   inset: 0;
