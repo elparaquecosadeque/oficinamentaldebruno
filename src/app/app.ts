@@ -45,13 +45,13 @@ export class App implements AfterViewInit, OnDestroy {
   constructor(private readonly host: ElementRef<HTMLElement>) { }
 
   protected readonly photos: HeroPhoto[] = [
-    { src: '/assets/hero/1.jpg', position: '58% 80%' },
-    { src: '/assets/hero/2.jpg', position: '10% 72%' },
-    { src: '/assets/hero/3.jpg', position: '65% 62%', desktopTransform: 'translateX(-103px)' },
-    { src: '/assets/hero/4.jpg', position: '40% 65%' },
-    { src: '/assets/hero/5.jpg', position: '70% 87%' },
-    { src: '/assets/hero/6.jpg', position: '50% 69%', desktopTransform: 'translateX(-300px)' },
-    { src: '/assets/hero/7.jpg', position: '50% 85%', desktopTransform: 'translateX(-180px)' },
+    { src: 'assets/hero/1.jpg', position: '58% 80%' },
+    { src: 'assets/hero/2.jpg', position: '10% 72%' },
+    { src: 'assets/hero/3.jpg', position: '65% 62%', desktopTransform: 'translateX(-103px)' },
+    { src: 'assets/hero/4.jpg', position: '40% 65%' },
+    { src: 'assets/hero/5.jpg', position: '70% 87%' },
+    { src: 'assets/hero/6.jpg', position: '50% 69%', desktopTransform: 'translateX(-300px)' },
+    { src: 'assets/hero/7.jpg', position: '50% 85%', desktopTransform: 'translateX(-180px)' },
   ];
 
   protected readonly rotator = new PhotoRotator(this.photos.length);
