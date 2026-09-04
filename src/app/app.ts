@@ -70,9 +70,9 @@ export class App implements AfterViewInit, OnDestroy {
   protected readonly links: LinkItem[] = [
     { label: 'Mi Metropolitano', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/mi-metropolitano', rotate: -1.4 },
     { label: 'The Chords', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/the-chords', rotate: 1.1 },
-    { label: 'Live Sound Calculator', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/live-sound-calculator', rotate: -0.8 },
-    { label: 'Personal Trainer PWA', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/personal-trainer-pwa', rotate: 1.3 },
-    { label: 'Collage Tools', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://oficinamentaldebruno.com/collage-tools', rotate: -1.1 },
+    { label: 'Live Sound Calculator', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://elparaquecosadeque.github.io/live-sound-calculator/', rotate: -0.8 },
+    { label: 'Personal Trainer PWA', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://elparaquecosadeque.github.io/personal-trainer-pwa/', rotate: 1.3 },
+    { label: 'Collage Tools', tag: 'Proyecto', tagSlug: 'proyecto', href: 'https://elparaquecosadeque.github.io/collage-tools/', rotate: -1.1 },
     { label: 'Artículos en dev.to', tag: 'Blog', tagSlug: 'blog', href: 'https://dev.to/gerardo_leon', rotate: 0.9 },
     { label: 'Instagram', tag: 'Social', tagSlug: 'social', href: 'https://www.instagram.com/oficinamentaldebruno', rotate: -1.3 },
     { label: 'TikTok', tag: 'Social', tagSlug: 'social', href: 'https://www.tiktok.com/@oficinamentaldebruno', rotate: 1.2 },
